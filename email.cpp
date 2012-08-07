@@ -32,7 +32,7 @@ Email::Email(QObject*parent, const QString& mimeTypesPath) :
   */
 void Email::openInDefaultProgram()
 {
-    QString email = "Content-Type: multipart/alternative; boundary=\""DUERR_DENTAL_AG_FRAMEWORK_EMAIL_COMPONENT_BOUNDARY"\"\r\n";
+    QString email = "Content-Type: multipart/alternative; boundary=\"BitshiftDynamicsMailerBoundary\"\r\n";
 
     // Add sender information
 
@@ -48,10 +48,10 @@ void Email::openInDefaultProgram()
     email.append("\r\n");
 
     // Add mime version
-    email.append("Mime-Version: "DUERR_DENTAL_AG_FRAMEWORK_EMAIL_COMPONENT_MIME_VERSION"\r\n\r\n");
+    email.append("Mime-Version: 1.0 BitshiftDynamics Mailer\r\n\r\n");
 
     // Add body
-    email.append("--"DUERR_DENTAL_AG_FRAMEWORK_EMAIL_COMPONENT_BOUNDARY"\r\n"); // "-<-" an error?
+    email.append("--BitshiftDynamicsMailerBoundary\r\n");
     email.append("Content-Transfer-Encoding: quoted-printable\r\n");
     email.append("Content-Type: text/plain;\r\n");
     email.append("        charset=iso-8859-1\r\n\r\n");
@@ -76,11 +76,11 @@ void Email::openInDefaultProgram()
         QByteArray fileData = attachmentFile.readAll();
         attachmentFile.close();
 
-        email.append("\r\n--"DUERR_DENTAL_AG_FRAMEWORK_EMAIL_COMPONENT_BOUNDARY"\r\n");
+        email.append("\r\n--BitshiftDynamicsMailerBoundary\r\n");
         email.append("Content-Type: multipart/mixed;\r\n");
-        email.append("        boundary=\""DUERR_DENTAL_AG_FRAMEWORK_EMAIL_COMPONENT_BOUNDARY"\"\r\n\r\n");
+        email.append("        boundary=\"BitshiftDynamicsMailerBoundary\"\r\n\r\n");
 
-        email.append("--"DUERR_DENTAL_AG_FRAMEWORK_EMAIL_COMPONENT_BOUNDARY"\r\n");
+        email.append("--BitshiftDynamicsMailerBoundary\r\n");
         email.append("Content-Disposition: inline;\r\n");
         email.append("        filename=\"").append(fileName).append("\"\r\n");
         email.append("Content-Type: ").append(mimeType).append(";\r\n");
